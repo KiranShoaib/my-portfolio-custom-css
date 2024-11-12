@@ -1,27 +1,28 @@
 "use client";
 import { useEffect } from "react";
-import ScrollReveal from "scrollreveal";
 import Image from "next/image";
 import about from "../../../public/about.png";
 import Button from "@/components/Button";
 
 function About(){
     useEffect(() => {
-        const sr = ScrollReveal({
-            reset: true,
-            distance: "80px",
-            duration: 2000,
-            delay: 200,
+        if (typeof window !== "undefined") {
+            import("scrollreveal").then((ScrollReveal) => {
+            const sr = ScrollReveal.default({
+                reset: true,
+                distance: "80px",
+                duration: 2000,
+                delay: 200,
         });
 
-        
         sr.reveal(".heading", { origin: "top" });
 
         sr.reveal(".abimg", { origin: "left" });
 
         sr.reveal(".about-content", { origin: "right" });
-
-    }, []);
+        });
+    };
+}, []);
     return(
         <section className="about" id="about">
             <div className="about-img">

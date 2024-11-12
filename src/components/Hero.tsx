@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import ScrollReveal from "scrollreveal";
 import Typed from "typed.js";
 import Link from "next/link";
 import { RiFacebookFill } from "react-icons/ri";
@@ -14,7 +13,9 @@ import myimage from "../../public/myimage.jpg";
 
 function Hero(){
     useEffect(() => {
-        const sr = ScrollReveal({
+        if (typeof window !== "undefined") {
+            import("scrollreveal").then((ScrollReveal) => {
+        const sr = ScrollReveal.default({
             //reset: true,
             distance: "80px",
             duration: 2000,
@@ -31,15 +32,17 @@ function Hero(){
 
     const typed = new Typed(".multiple-text", {
         strings: ["Frontend Developer", "UI/UX Designer", "Professional Coder"],
-        typeSpeed: 100, 
-        backSpeed: 100, 
+        typeSpeed: 50, 
+        backSpeed: 50, 
         backDelay: 1000, 
         loop: true, 
     });
 
     return () => {
-        typed.destroy(); // Destroy the typed instance when the component is unmounted
+        typed.destroy();
     };
+});
+};
     }, []);
 
     

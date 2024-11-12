@@ -1,21 +1,23 @@
 "use client";
 import { useEffect } from "react";
-import ScrollReveal from "scrollreveal";
 
 function Contact(){
     useEffect(() => {
-        const sr = ScrollReveal({
-            reset: true,
-            distance: "80px",
-            duration: 2000,
-            delay: 200,
-        });
-
-        // Reveal the .heading class on scroll
-        sr.reveal(".heading", { origin: "top" });
+        if (typeof window !== "undefined") {
+            import("scrollreveal").then((ScrollReveal) => {
+            const sr = ScrollReveal.default({
+                reset: true,
+                distance: "80px",
+                duration: 2000,
+                delay: 200,
+            });
         
+        sr.reveal(".heading", { origin: "top" });
+
         sr.reveal(".contact form", { origin: "bottom" });
-    }, []);
+        });
+    };
+}, []);
     return(
         <section className="contact" id="contact">
             <h2 className="heading">Contact <span>Me!</span></h2>

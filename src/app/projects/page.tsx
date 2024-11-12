@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import ScrollReveal from "scrollreveal";
 import Image from "next/image";
 import Link from "next/link";
 import { BiLinkExternal } from "react-icons/bi";
@@ -13,18 +12,21 @@ import countdowntimer from "../../../public/countdowntimer.png";
 
 function Projects(){
     useEffect(() => {
-        const sr = ScrollReveal({
-            reset: true,
-            distance: "80px",
-            duration: 2000,
-            delay: 200,
+        if (typeof window !== "undefined") {
+            import("scrollreveal").then((ScrollReveal) => {
+            const sr = ScrollReveal.default({
+                reset: true,
+                distance: "80px",
+                duration: 2000,
+                delay: 200,
         });
 
-        // Reveal the .heading class on scroll
         sr.reveal(".heading", { origin: "top" });
-        
+
         sr.reveal(".portfolio-box", { origin: "bottom" });
-    }, []);
+        });
+    };
+}, []);
     return(
         <section className="portfolio" id="portfolio">
             <h2 className="heading">Latest <span>Project</span></h2>

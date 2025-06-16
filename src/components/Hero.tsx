@@ -59,7 +59,9 @@ function Hero(){
                     <Link href="https://www.instagram.com/kiranshoaib091/" target="_blank" ><AiFillInstagram className="social-media"/></Link>
                     <Link href="https://www.linkedin.com/in/kiran-shoaib-9582392a3" target="_blank" ><LiaLinkedinIn className="social-media"/></Link>
                 </div>
-                <Button text="Download CV"/>
+                <a href="/Kiran Shoaib.pdf" download>
+                    <Button text="Download CV" />
+                </a>
             </div>
             <div className="home-img">
                 <Image src={myimage} alt="profile picture" className="img"/>
